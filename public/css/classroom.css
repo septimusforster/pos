@@ -1,0 +1,223 @@
+#rightContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 3em;
+    width: 100%;
+    padding: 120px 50px;
+    height: fit-content;
+}
+.card {
+    cursor: pointer;
+    flex-basis: 15%;
+    padding: 20px 0;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 350ms;
+}
+.card:hover {
+    transform: scale(1.1);
+}
+.card__name {
+    flex: 3;
+    /* border-right: 1px solid #fff; */
+}
+.card__int {
+    flex: 1;
+    color: greenyellow;
+    border-left: 1px solid #fff;
+}
+.card__name, .card__int {
+    text-align: center;
+    padding: 12px 18px;
+    /* border-radius: 12px; */
+}
+#crud {
+    display: none;
+    /* border: 1px solid gray; */
+    width: 70%;
+    padding: 50px;
+}
+#crud > div {
+    display: flex;
+    align-items: center;
+}
+#crudContainer {
+    padding: 0 50px;
+    /* border: 1px solid gray; */
+    color: #fff;
+    height: 80vh;
+    height: 80dvh;
+    overflow-y: auto;
+}
+#crudContainer::-webkit-scrollbar {
+    width: 0.8em;
+}
+#crudContainer::-webkit-scrollbar-track,
+#crudContainer::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+}
+#crudContainer::-webkit-scrollbar-track {
+    background-color: rgba(0,0,0,0.2);
+}
+#crudContainer::-webkit-scrollbar-thumb {
+    background-color: #fff;
+}
+.cb__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+.cb__container label {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    cursor: pointer;
+}
+.cb__container label:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+.cb__container input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+}
+.cb__container input[type="checkbox"]:checked + label {
+    background-color: rgba(0,0,0,0.2)
+}
+.cb__container label > svg {
+    height:40px;
+    width: 40px;
+    margin-right: 20px;
+}
+.st0 {
+    fill: #fff;
+}
+#taskbar {
+    padding: 50px 0;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #445793;
+}
+#taskbar button svg {
+    margin-right: 12px;
+}
+#taskbar button {
+    padding: 3px 16px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 0.7em;
+    transition: 150ms;
+}
+#taskbar button:hover {
+    box-shadow: 2px 2px 4px 5px rgba(0,0,0,0.1);
+}
+#taskbar button:first-child {
+    background-color: #fff;
+    color: #445793;
+}
+#crudContainer #deleteBtn {
+    opacity: 0;
+    background-color: orangered;
+    color: #fff;
+}
+#editform {
+    display: flex;
+}
+#editArm + div {
+    display: none;
+}
+#editArm, #editArm + div > button, #goBack {
+    color: #fff;
+    font-size: 1em;
+    padding: 12px 20px;
+    border: none;
+    outline: none;
+    transition: 250ms;
+    background-color: transparent;
+}
+#editArm + div > button:hover {
+    background-color: rgba(0,0,0,0.4);
+}
+#editArm:hover, #editArm + div, #goBack:hover {
+    background-color: rgba(0,0,0,0.2);
+}
+#editArm:focus {
+    background-color: rgba(0,0,0,0.1);
+}
+#editArm:hover + div, #editArm:focus + div {
+    display: flex;
+}
+#form-user-edit {
+    display: none;
+    flex-direction: column;
+    gap: 1em;
+    margin: 0 auto;
+    padding: 0 100px 100px;
+    width: 50%;
+    height: 90vh;
+    height: 90dvh;
+    overflow: auto;
+}
+#form-user-edit::-webkit-scrollbar {
+    width: 0.7em;
+}
+#form-user-edit::-webkit-scrollbar-track {
+    background-color: rgba(0,0,0,0.2);
+}
+#form-user-edit::-webkit-scrollbar-thumb {
+    background-color: #fff;
+}
+#form-user-edit input {
+    border: none;
+    outline: none;
+    font-size: 0.9em;
+    padding: 10px 12px;
+    border-radius: 7px;
+    transition: all 250ms ease-in-out;
+}
+#form-user-edit input:focus {
+    transform: scale(1.12);
+}
+#form-user-edit > div {
+    background-color: #445793;
+    padding: 48px 24px;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+}
+#form-user-edit > div button {
+    border: none;
+    outline: none;
+    padding: 12px;
+    width: 100px;
+    font-size: 0.8em;   
+}
+#form-user-edit > div button:first-child {
+    background-color: orangered;
+    color: #fff;
+}
+#form-user-edit > div button:last-child {
+    background-color: greenyellow;
+}
+.btn-user-edit {
+    background: transparent;
+    padding: 7px;
+}
+.btn-user-edit > svg {
+    stroke: #fff;
+}

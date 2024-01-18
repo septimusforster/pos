@@ -1,0 +1,97 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+#mainDiv {
+    min-height: 100vh;
+    min-height: 100dvh;
+    width:100%;
+    display: flex;
+    font-family: "Poppins", sans-serif;
+}
+#mainDiv header{
+    background-color: transparent;
+    flex-basis: 20%;
+    position:relative;
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+}
+#mainDiv header::before {
+    content: '';
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left:0;
+    width:20vh;
+    width:20dvh;
+    z-index: -1;
+    border-right:10vh solid transparent;
+    border-right:10dvh solid transparent;
+    border-bottom: 100vh solid rgba(68,87,147,0.3);
+    border-bottom: 100dvh solid rgba(68,87,147,0.3);
+}
+#mainDiv header::after {
+    content: '';
+    background: transparent;
+    position: absolute;
+    top: 0;
+    left:0;
+    width:20vh;
+    width:20dvh;
+    z-index: -1;
+    border-right:7vh solid transparent;
+    border-right:7dvh solid transparent;
+    border-bottom: 100vh solid #445793;
+    border-bottom: 100dvh solid #445793;
+}
+#mainDiv header div {
+    color: #fff;
+    text-indent:25px;
+}
+#mainDiv header div:first-child {
+    font-size:3em;
+}
+#mainDiv header div:last-child {
+    letter-spacing: 5px;
+}
+#bodyDiv {
+    flex-basis: 80%;
+    margin: 50px 100px 50px 0;
+    padding-right: 20px;
+    height: 85vh;
+    height: 85dvh;
+    overflow-y: auto;
+}
+#bodyDiv::-webkit-scrollbar {
+    width:1em;
+}
+#bodyDiv::-webkit-scrollbar-track {
+    background-color: rgba(68,87,147,0.1);
+    border-radius: 8px;
+}
+#bodyDiv::-webkit-scrollbar-thumb {
+    background-color: #445793;
+    border-radius: 8px;
+}
+#bodyDiv table {
+    border-collapse: collapse;
+    border:1px solid rgba(68,87,147,0.3);
+}
+#bodyDiv table thead {
+    position: sticky;
+    top: 0;
+    background-color: #445793;
+    color: #fff;
+}
+#bodyDiv table th,
+#bodyDiv table td {
+    text-align: left;
+    padding: 12px 15px;
+    font-size: 0.9em;
+    font-weight: 200;
+}
+#bodyDiv tbody tr:nth-of-type(odd) {
+    background: rgba(68,87,147,0.1);
+}

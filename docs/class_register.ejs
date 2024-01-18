@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Register</title>
+    <link rel="stylesheet" type="text/css" href="/css/cg.css">
+</head>
+<body>
+    <div id="mainDiv">
+        <header>
+            <div><%= room %></div>
+            <div><%= arm %></div>
+        </header>
+        <div id="bodyDiv">
+            <table>
+                <thead>
+                    <tr>
+                        <th title="No.">Sn</th><th title="First name">Fn</th><th title="Last name">Ln</th><th title="Other names">On</th>
+                        <th title="Gender">Gn</th><!--th title="Birth day">Bday</th--><th title="Age">Age</th><th title="Year of Admission">YoA</th>
+                        <th title="Religion">Rel</th><th title="Nationality">Nat</th><th title="State of origin">Sta</th><th title="LGA">LGA</th>
+                        <th title="Address">Addr</th><th title="Father's name">Ftn</th><th title="Father's phone">Ftp</th><th title="Mother's name">Mtn</th>
+                        <th title="Mother's phone">Mtp</th>
+                        <!-- <th title="Class">Cla</th><th title="Arm" colspan="2">Arm</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+
+        let newVersion, request, db, tx, store;
+        let th = document.querySelectorAll('th');
+        let room = document.querySelector('header div:first-child').innerText;
+        let arm = document.querySelector('header div:last-child').innerText;
+
+        newVersion = Number(localStorage.getItem(room));
+        request = window.indexedDB.open(room, newVersion + 1);
+
+        request.onerror = function(e) {
+            console.log(e.target.errorCode);
+        }
+
+        request.onsuccess = function (e) {
+            db = request.result;
+            tx = db.transaction(arm, "readonly");
+            store = tx.objectStore(arm);
+
+            let fromStore = store.getAll();
+                
+            fromStore.onsuccess = function () {
+                fromStore.result.forEach( (res, i) => {
+                    let td = `<td>${i + 1}</td>`;
+                    for (j = 0; j < th.length; j++) {
+                        if (th[j].innerText.toLowerCase() == "sn"/* || th[j].innerText.toLowerCase() == "cla"*/) continue;
+                        td += `<td>${res[th[j].innerText.toLowerCase()]}</td>`;
+                    }
+                    document.querySelector('#bodyDiv tbody').innerHTML += `<tr>${td}</tr>`;
+                    // console.log(td);
+                })
+            }
+
+            tx.oncomplete = function() {
+                db.close();
+            }
+        }
+    </script>
+</body>
+</html>

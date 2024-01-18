@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PUBLIC</title>
+    <style>
+        *{margin: 0;padding: 0;box-sizing: border-box;font-family: "poppins", sans-serif;}
+        #tableContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 80vh;
+            height: 80dvh;
+            overflow-y: auto;
+            /* padding: 0 50px 0 0; */
+        }
+        #tableContainer::-webkit-scrollbar, #sidenav::-webkit-scrollbar {
+            width: 0.7em;
+        }
+        #tableContainer::-webkit-scrollbar-track,
+        #tableContainer::-webkit-scrollbar-thumb,
+        #sidenav::-webkit-scrollbar-track,
+        #sidenav::-webkit-scrollbar-thumb {
+            border-radius: 100vw;
+        }
+        #tableContainer::-webkit-scrollbar-track {
+            background-color: rgba(0,0,0,0.2);
+        }
+        #tableContainer::-webkit-scrollbar-thumb {
+            background-color: #fff;
+            /* border: 3px solid rgba(0,0,0,0.7); */
+        }
+        #sidenav::-webkit-scrollbar-track {
+            background-color: #eee;
+        }
+        #sidenav::-webkit-scrollbar-thumb {
+            background-color: #aaa;
+        }
+        .students {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 1px solid #fff;
+        }
+        .students span {
+            padding: 8px;
+        }
+        select, input, button {
+            outline: 0;
+            border: 0;
+            text-align: center;
+        }
+        button {
+            cursor: pointer;
+        }
+        /* #rooms, #arms {
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            appearance: none;
+        } */
+        #form input, #form select, #form button {
+            font-size: 0.7em;
+            padding: 10px;
+            /*line-height: 40px;*/
+            /*color: #555*/
+        }
+        button#enter {
+            background-color: #283e87;
+            color: #fff;
+            border-radius: 5px;
+            flex-basis: 10%;
+            transform: scale(1.15);
+        }
+        button#save {
+            display: flex;
+            align-items: center;
+            background-color: greenyellow;
+            color: #000;
+            padding: 24px;
+            border-radius: 5px;
+        }
+        #studentTable {
+            border-collapse: collapse;
+            /*border-radius: 8px 8px 0 0 ;*/
+        }
+        #studentTable thead {
+            position: sticky;
+            top: 0;
+            background-color: #445793;
+            box-shadow: 0 0 3px 5px rgba(0,0,0,0.1);
+            border-radius: 0 0 5px 5px;
+        }
+        #studentTable tr {
+            text-align: left;
+            color: #fff;
+        }
+        #studentTable th,
+        #studentTable td {
+            padding: 12px 15px;
+            font-size: 0.7em;
+            font-weight: 200;
+        }
+        #studentTable tbody tr:nth-of-type(odd) {
+            background-color: #5089d8;
+            border-radius: 5px;
+        }
+        #studentTable tbody tr td:last-child {
+            cursor: pointer;
+            text-align: center;
+        }
+        #studentTable tbody tr td:last-child:hover {
+            color: #000;
+        }
+        /* #form form {
+            background-color: #fff;
+        } */
+        #in-box {
+            color:#fff;
+            font-size: 2em;
+            text-align: center;
+            transform: rotateX(90deg);
+            transition: 1s;
+        }
+        input[type='email']:invalid {
+            background-color: pink;
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="mainContainer" style="flex: 5;">
+        <div style="display: flex;justify-content: space-between;align-items: center;">
+            <h2 style="font-weight: normal;padding: 40px 0;color: #fff;">Add student(s)</h2>
+            <span title="Limit" id="tbodyCount" style="background-color: rgba(0,0,0,0.2);color: #fff;font-size: 0.7em;padding: 7px 12px;border-radius: 5px;">0&nbsp;&nbsp;|&nbsp;&nbsp;10</span>
+        </div>
+    
+        <section id="tableContainer">
+            <table id="studentTable">
+                <thead>
+                    <tr>
+                        <th title="No.">Sn</th><th title="First name">Fn</th><th title="Last name">Ln</th><th title="Other names">On</th>
+                        <th title="Email">Em</th><th title="Gender">Gn</th><th title="Birth day">Bd</th><th title="Age">Ag</th><th title="Religion">Rel</th>
+                        <th title="Nationality">Nat</th><th title="State of origin">SoR</th><th title="LGA">LGA</th><th title="Year of Admission">Yoa</th>
+                        <th title="Address">Addr</th><th title="Father's name">Ftn</th><th title="Father's phone">Ftp</th><th title="Mother's name">Mtn</th>
+                        <th title="Mother's phone">Mtp</th><th title="Class">Cla</th><th title="Arm" colspan="2">Arm</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            
+            <div id="form" style="position: sticky;display: flex;justify-content: space-around;align-items: center;padding: 20px 0;border-radius: 5px 5px 0 0;background-color:#445793;">
+                <form name="register" id="register" style="display: flex;align-items:center;flex-wrap:wrap;gap:0.7em;border-radius: 5px;overflow: hidden;">
+                    <input id="fn" type="text" placeholder="First name" autocomplete="off" required>
+                    <input id="ln" type="text" placeholder="Last name" autocomplete="off" required>
+                    <input id="on" type="text" placeholder="Other names" autocomplete="off">
+                    <input type="email" name="umail" id="umail" pattern=".+@(gmail|dca|yahoo|hotmail)\.com" placeholder="Email" autocomplete="off" required>
+                    <select name="gn" id="gn" required>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+                    <!-- <label for="dob" title="Date of birth">DOB</label> -->
+                    <input id="dob" type="date">
+                    <input id="age" type="text" placeholder="Age" autocomplete="off">
+                    <input type="hidden" name="bday" id="bday">
+                    <input id="rel" type="text" placeholder="Religion">
+                    <input id="nat" type="text" placeholder="Nationality">
+                    <input id="sta" type="text" placeholder="State of origin">
+                    <input id="lga" type="text" placeholder="LGA">
+                    <input type="number" name="yoa" id="yoa" placeholder="Year of admission" min="2020" required>
+                    <input id="addr" style="flex-basis:50%" type="text" placeholder="Address" autocomplete="off">
+                    <input id="ftn" type="text" placeholder="Father's name" autocomplete="off">
+                    <input id="ftp" type="tel" placeholder="Father's phone" autocomplete="off" maxlength="11">
+                    <input id="mtn" type="text" placeholder="Mother's name" autocomplete="off">
+                    <input id="mtp" type="tel" placeholder="Mother's phone" autocomplete="off" maxlength="11">
+                    <select name="room" id="room">
+                        <option value="JSS 1">JSS 1</option>
+                        <option value="JSS 2">JSS 2</option>
+                        <option value="JSS 3">JSS 3</option>
+                    </select>
+                    <select name="arm" id="arm"></select>
+                    <button type="submit" id="enter">Enter</button>
+                </form>
+                <!--div-->
+                    <button id="save" type="button">Save&nbsp;&nbsp;
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="1em" height="1em" viewBox="0 0 24 24"><path d="M21,20V8.414a1,1,0,0,0-.293-.707L16.293,3.293A1,1,0,0,0,15.586,3H4A1,1,0,0,0,3,4V20a1,1,0,0,0,1,1H20A1,1,0,0,0,21,20ZM9,8h4a1,1,0,0,1,0,2H9A1,1,0,0,1,9,8Zm7,11H8V15a1,1,0,0,1,1-1h6a1,1,0,0,1,1,1Z"/></svg>
+                    </button>
+                <!--/div-->
+            </div>
+        </section>
+    </div>
+    <script>
+        
+        
+    </script>
+    <script>
+        // To prevent windows reloading while making form entry: UNSOLVED!!
+        // window.addEventListener('beforeunload', (e) => {
+        //     e.preventDefault();
+        //     // console.log(e.key, e.keyCode)   // F5 116
+        // })
+        const dob = document.getElementById('dob');
+        const bday = document.getElementById('bday');
+        //DOB evaluation
+        dob.addEventListener('blur', (e) => {
+            let dt = Date.now() - new Date(e.target.value);
+            let age = new Date(dt).getFullYear() - 1970;
+            if (age == 'NaN') return;
+            e.target.nextElementSibling.value = age;
+            //add year for current dob (1970 subtracted from value)
+            bday.value = new Date(dt).getFullYear();
+        })
+    </script>
+    <script>
+        const enterBtn = document.querySelector('#enter');
+        const saveBtn = document.querySelector('#save');
+        const tableBody = document.querySelector('#studentTable tbody');
+        const tableForm = document.querySelector('form#register');
+        const tbodyCount = document.querySelector('#tbodyCount');
+
+        let studentArray = [];
+
+        // class Student {
+        //     constructor(){
+        //         this.fname = document.getElementById('studentName').value;
+        //         this.uname = '1';
+        //         this.upass = '00000';
+        //         this.room = document.getElementById('rooms').value;
+        //         this.arm = document.getElementById('arms').value;
+        //     }
+        //     remove (index) {
+        //         //document.querySelectorAll('#studentTable tbody tr')[index].remove();
+        //         studentArray[index - 1] = undefined;
+        //         //console.log(studentArray);
+        //     }
+        // }
+
+        //saveBtn
+        saveBtn.onclick = () => {
+            let mainContainer = document.querySelector('#mainContainer');
+
+            saveBtn.disabled = true;
+            saveBtn.style.cursor = 'not-allowed';
+            //remove falsy values like undefined
+            const postStudents = studentArray.filter(value => Boolean(value));
+
+            fetch('/createStudents', {
+                method: 'POST',
+                body: JSON.stringify(postStudents),
+                headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    }
+            })
+            .then(res => res.json())
+            .then(data => {
+                mainContainer.innerHTML = '';
+                mainContainer.style.display = 'flex';
+                mainContainer.style.justifyContent = 'center';
+                mainContainer.style.alignItems = 'center';
+
+                mainContainer.innerHTML = `
+                    <div id="in-box">
+                        ${data.result}<br><span style="color: greenyellow;">&check;</span>
+                    </div>
+                `;
+                document.querySelector('#in-box').style.transform = 'rotateX(0deg)';
+            });
+        }
+
+        //function to remove student
+        async function removeStudent(elem) {
+            if (!window.confirm(`Delete ${elem.children[1].textContent}?`)) return;
+
+            let index = Number(elem.getAttribute('value')) - 1;
+            studentArray[index] = undefined;
+            elem.remove();            
+            await document.querySelectorAll('#studentTable tbody td:first-child').forEach((e,i) => e.textContent = i + 1);
+            tbodyCount.innerHTML = `${tableBody.childElementCount}&nbsp;&nbsp;|&nbsp;&nbsp;10`;
+        }
+
+        //enterBtn.onclick = () => {
+        
+
+        tableForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (tableBody.childElementCount >= 10) return;
+
+            tbodyCount.innerHTML = `${tableBody.childElementCount + 1}&nbsp;&nbsp;|&nbsp;&nbsp;10`;
+
+            let Students = {};
+            for (i = 0; i < document.forms.register.elements.length - 1; i++) {
+                Students[e.srcElement[i].id] = e.srcElement[i].value;
+            }
+            studentArray.push(Students);
+
+            let td = '';
+
+            for(a in Students) {
+                if (a == 'bday') continue;
+                td += `<td>${Students[a]}</td>`;
+            }
+               
+            //display new student on table
+            tableBody.innerHTML += `
+                <tr value=${studentArray.length}>
+                    <td>${document.querySelectorAll('#studentTable tbody tr').length + 1}</td>
+                    ${td}
+                    <td onclick=removeStudent(this.parentElement)>&times;</td>
+                </tr>
+            `;
+
+            document.querySelector('#tableContainer').scrollTo({
+                top: document.querySelector('#tableContainer').scrollHeight + 24,
+                left: 0,
+                behavior: "smooth"
+            })            
+            tableForm.reset();
+        })
+            
+       // }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        #main {
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+        }
+        header, section, footer {
+            display: flex;
+        }
+        header, footer {
+            background-color: #445793;
+        }
+        header {
+            flex: 1;
+            position: relative;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -40px;
+            border: 20px solid;
+            border-color: #445793 #fff #fff;
+        }
+        section {
+            flex: 4;
+            justify-content: center;
+            align-items: center;
+        }
+        section a {
+            position: relative;
+            height: 30vh;
+            flex-basis: 30vh;
+            text-decoration: none;
+            color: #445793;
+            text-align: center;
+            font: 100 2em Poppins, sans-serif;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1em;
+            /* border-radius: 5px; */
+            transition: all 250ms ease-in-out;
+        }
+        section a:hover {
+            background-color: #445793;
+            color: #fff;
+            fill: #fff;
+        }
+        section a::after {
+            line-height: 1.5;
+            font-size: 0.5em;
+            flex: 1;
+            padding: 7px;
+        }
+        section a:nth-of-type(1)::after {
+            content: 'Login with email and password to view and download class activities.';
+        }
+        section a:nth-of-type(2)::after {
+            content: 'Login with valid ID to post and manage file uploads.';
+            border: solid #445793;
+            border-width: 0 1px 0;
+        }
+        section a:nth-of-type(3)::after {
+            content: 'Enter pass key to manage both staffer and student data.';
+        }
+        footer {
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+            font: 1em Poppins, sans-serif;
+            color: #fff;
+        }
+        footer div span:first-child {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <header>
+            <img src="#" alt="ava">
+        </header>
+        <section id="midsection">
+            <a href="/login">
+                Student
+                <svg xmlns="http://www.w3.org/2000/svg" width="90px" height="90px" viewBox="0 0 24 24">
+                    <path d="M16.8311 15.6402C17.5011 15.2002 18.3811 15.6802 18.3811 16.4802V17.7702C18.3811 19.0402 17.3911 20.4002 16.2011 20.8002L13.0111 21.8602C12.4511 22.0502 11.5411 22.0502 10.9911 21.8602L7.80109 20.8002C6.60109 20.4002 5.62109 19.0402 5.62109 17.7702V16.4702C5.62109 15.6802 6.50109 15.2002 7.16109 15.6302L9.22109 16.9702C10.0111 17.5002 11.0111 17.7602 12.0111 17.7602C13.0111 17.7602 14.0111 17.5002 14.8011 16.9702L16.8311 15.6402Z"/>
+                    <path d="M19.9795 6.45859L13.9895 2.52859C12.9095 1.81859 11.1295 1.81859 10.0495 2.52859L4.02953 6.45859C2.09953 7.70859 2.09953 10.5386 4.02953 11.7986L5.62953 12.8386L10.0495 15.7186C11.1295 16.4286 12.9095 16.4286 13.9895 15.7186L18.3795 12.8386L19.7495 11.9386V14.9986C19.7495 15.4086 20.0895 15.7486 20.4995 15.7486C20.9095 15.7486 21.2495 15.4086 21.2495 14.9986V10.0786C21.6495 8.78859 21.2395 7.28859 19.9795 6.45859Z"/>
+                </svg>
+            </a>
+            <a href="loginTeacher">
+                Staffer
+                <svg xmlns="http://www.w3.org/2000/svg" width="90px" height="90px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1"><defs><style>.cls-1{stroke:#020202;stroke-miterlimit:10;stroke-width:1.91px;}</style></defs><rect class="cls-1" x="3.41" y="8.18" width="17.18" height="11.45"/><rect class="cls-1" x="7.23" y="12" width="9.55" height="3.82"/><line class="cls-1" x1="0.55" y1="8.18" x2="23.45" y2="8.18"/><line class="cls-1" x1="3.41" y1="22.5" x2="3.41" y2="19.64"/><line class="cls-1" x1="20.59" y1="22.5" x2="20.59" y2="19.64"/><line class="cls-1" x1="5.32" y1="1.5" x2="5.32" y2="8.18"/><line class="cls-1" x1="8.18" y1="4.36" x2="8.18" y2="8.18"/><line class="cls-1" x1="2.45" y1="2.45" x2="2.45" y2="8.18"/></svg>
+            </a>
+            <a href="administrator">
+                Site-Admin
+                <svg xmlns="http://www.w3.org/2000/svg" width="70px" height="70px" viewBox="0 0 1920 1920">
+                    <path d="M983.727 5.421 1723.04 353.62c19.765 9.374 32.414 29.252 32.414 51.162v601.525c0 489.6-424.207 719.774-733.779 887.943l-34.899 18.975c-8.47 4.517-17.731 6.889-27.105 6.889-9.262 0-18.523-2.372-26.993-6.89l-34.9-18.974C588.095 1726.08 164 1495.906 164 1006.306V404.78c0-21.91 12.65-41.788 32.414-51.162L935.727 5.42c15.134-7.228 32.866-7.228 48 0ZM757.088 383.322c-176.075 0-319.285 143.323-319.285 319.398 0 176.075 143.21 319.285 319.285 319.285 1.92 0 3.84 0 5.76-.113l58.504 58.503h83.689v116.781h116.781v83.803l91.595 91.482h313.412V1059.05l-350.57-350.682c.114-1.807.114-3.727.114-5.647 0-176.075-143.21-319.398-319.285-319.398Zm0 112.942c113.732 0 206.344 92.724 205.327 216.62l-3.953 37.271 355.426 355.652v153.713h-153.713l-25.412-25.299v-149.986h-116.78v-116.78H868.108l-63.812-63.7-47.209 5.309c-113.732 0-206.344-92.5-206.344-206.344 0-113.732 92.612-206.456 206.344-206.456Zm4.98 124.98c-46.757 0-84.705 37.948-84.705 84.706s37.948 84.706 84.706 84.706c46.757 0 84.706-37.948 84.706-84.706s-37.949-84.706-84.706-84.706Z" fill-rule="evenodd"/>
+                </svg>
+            </a>
+        </section>
+        <footer>
+            <div>
+                <span>Powered by: </span><span>Dynamax | &copy; 2018</span>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
